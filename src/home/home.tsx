@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Home() {
     return(
-        <p>E</p>
+        <div>Minis!</div>
     )
 }

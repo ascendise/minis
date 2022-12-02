@@ -1,13 +1,10 @@
-import { unmountComponentAtNode } from 'react-dom';
+import { cleanup, render, screen } from '@testing-library/react';
+import Home from './home';
 
-let container: Element;
-beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
+afterEach(cleanup);
+
+it('renders website name', () => {
+    render(<Home/>);
+    const title = screen.queryByText('Minis!')
+    expect(title).toBeInTheDocument();
 })
-
-afterEach(() => {
-    unmountComponentAtNode(container!);
-    container.remove();
-})
-
