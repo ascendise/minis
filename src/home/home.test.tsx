@@ -3,8 +3,15 @@ import Home from './home';
 
 afterEach(cleanup);
 
-it('renders website name', () => {
+it('should render website name', () => {
     render(<Home/>);
     const title = screen.queryByText('Minis!')
     expect(title).toBeInTheDocument();
+})
+
+it('should render logo on home page', () => {
+    render(<Home/>);
+    const logo = screen.queryByRole('img');
+    expect(logo).toBeInTheDocument();
+    expect(logo?.getAttribute('src')).toBe('./logo.svg');
 })
