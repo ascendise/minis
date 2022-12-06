@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Home() {
+export default function App() {
     return(
         <div>
             <div className='text-center bg-orange-300 rounded-b-xl'>
