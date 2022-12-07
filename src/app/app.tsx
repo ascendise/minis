@@ -1,4 +1,6 @@
 import React from 'react';
+import { GalleryService } from '../gallery-service/gallery.service';
+import Home from '../home/home';
 
 export default function App() {
   return (
