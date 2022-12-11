@@ -1,6 +1,5 @@
-import { queryAllByAttribute } from '@testing-library/react';
 import React from 'react';
-import { GalleryService, Video } from "../gallery-service/gallery.service";
+import { GalleryService } from "../gallery-service/gallery.service";
 
 export default function Home(props: HomeProps) {
     const service = props.galleryService;
