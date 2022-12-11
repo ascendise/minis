@@ -1,13 +1,7 @@
 export class GalleryService {
-    public getGallery(): Gallery {
-        return {
-            videos: [{
-                name: '',
-                src: '',
-                type: ''
-            }],
-            albums: [],
-        }
+    public async getGallery(): Promise<Gallery> {
+        const response = await fetch('gallery.json');
+        return response.json();
     }
 }
 
@@ -29,6 +23,6 @@ export interface Album {
 
 export interface Image {
     name: string,
-    path: string,
+    src: string,
     alt: string,
 }

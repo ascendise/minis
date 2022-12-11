@@ -59,7 +59,7 @@ it('should render first image of album as preview', () => {
                 name: "Album 1",
                 images: [{
                     name: 'Image of something',
-                    path: './image.webp',
+                    src: './image.webp',
                     alt: 'Description of image'
                 }],
             }

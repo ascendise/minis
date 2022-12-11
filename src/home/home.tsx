@@ -10,7 +10,7 @@ export default function Home(props: HomeProps) {
             {album.name}
             {album.images.length > 0 &&
                 <img 
-                    src={album.images[0].path} 
+                    src={album.images[0].src} 
                     alt={album.images[0].alt}
                     aria-label={album.images[0].name}
                 ></img>
