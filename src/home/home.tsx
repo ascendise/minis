@@ -8,7 +8,7 @@ export default function Home(props: HomeProps) {
     return (
         <div>
             <video id='main-video'>
-                <source src={video.src} type={video.name}></source>
+                <source src={video.src} type={video.type}></source>
             </video>
         </div>
     )

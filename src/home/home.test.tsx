@@ -2,7 +2,7 @@ import React from 'react';
 import Home from "./home";
 import { cleanup, render } from "@testing-library/react";
 import { Gallery, GalleryService } from "../gallery-service/gallery.service";
-import { mock, when, verify } from 'ts-mockito';
+import { mock, when, verify, instance } from 'ts-mockito';
 
 let mockGallery: GalleryService;
 
@@ -24,11 +24,10 @@ it('should render video from gallery', () => {
         albums: [],
     }
     when(mockGallery.getGallery()).thenReturn(gallery)
-    const component = render(<Home galleryService={new GalleryService()}/>);
+    const component = render(<Home galleryService={instance(mockGallery)}/>);
     const video = component.container.querySelector("#main-video");
     expect(video).toBeInTheDocument();
     const sourceNode = video?.children[0];
-    console.log(sourceNode)
     expect(sourceNode?.getAttribute('src')).toBe('video.webm');
     expect(sourceNode?.getAttribute('type')).toBe('video/webm');
     verify(mockGallery.getGallery()).once();
