@@ -1,3 +1,4 @@
+import { queryAllByAttribute } from '@testing-library/react';
 import React from 'react';
 import { GalleryService, Video } from "../gallery-service/gallery.service";
 
@@ -8,6 +9,13 @@ export default function Home(props: HomeProps) {
     const albums = gallery.albums.map((album, index) => 
         <div key={index}>
             {album.name}
+            {album.images.length > 0 &&
+                <img 
+                    src={album.images[0].path} 
+                    alt={album.images[0].alt}
+                    aria-label={album.images[0].name}
+                ></img>
+            } 
         </div>
     );
     return (

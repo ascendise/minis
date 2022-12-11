@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from "./home";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Gallery, GalleryService } from "../gallery-service/gallery.service";
 import { mock, when, verify, instance } from 'ts-mockito';
 
@@ -49,4 +49,26 @@ it('should render album title', () => {
     const {getByText} = render(<Home galleryService={instance(mockGallery)}/>)
     expect(getByText('Album 1')).toBeInTheDocument();
     expect(getByText('Album 2')).toBeInTheDocument();
+})
+
+it('should render first image of album as preview', () => {
+    const gallery: Gallery = {
+        videos: [],
+        albums: [
+            {
+                name: "Album 1",
+                images: [{
+                    name: 'Image of something',
+                    path: './image.webp',
+                    alt: 'Description of image'
+                }],
+            }
+        ]
+    }
+    when(mockGallery.getGallery()).thenReturn(gallery)
+    render(<Home galleryService={instance(mockGallery)}/>)
+    const image = screen.getByRole('img', {name: 'Image of something'});
+    expect(image).toBeInTheDocument();
+    expect(image.getAttribute('src')).toBe('./image.webp');
+    expect(image.getAttribute('alt')).toBe('Description of image');
 })
