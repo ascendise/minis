@@ -1,8 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import {  render, screen } from '@testing-library/react';
 import App from './app';
 import React from 'react';
-
-afterEach(cleanup);
 
 it('should render website name', () => {
   render(<App />);

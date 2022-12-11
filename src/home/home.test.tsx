@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from "./home";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Gallery, GalleryService } from "../gallery-service/gallery.service";
 import { mock, when, verify, instance } from 'ts-mockito';
 
@@ -9,8 +9,6 @@ let mockGallery: GalleryService;
 beforeEach(() => {
     mockGallery = mock(GalleryService);
 });
-
-afterEach(cleanup);
 
 it('should render video from gallery', () => {
     const gallery: Gallery = {
@@ -31,4 +29,24 @@ it('should render video from gallery', () => {
     expect(sourceNode?.getAttribute('src')).toBe('video.webm');
     expect(sourceNode?.getAttribute('type')).toBe('video/webm');
     verify(mockGallery.getGallery()).once();
+})
+
+it('should render album title', () => {
+    const gallery: Gallery = {
+        videos: [],
+        albums: [
+            {
+                name: "Album 1",
+                images: [],
+            },
+            {
+                name: "Album 2",
+                images: [],
+            }
+        ]
+    }
+    when(mockGallery.getGallery()).thenReturn(gallery)
+    const {getByText} = render(<Home galleryService={instance(mockGallery)}/>)
+    expect(getByText('Album 1')).toBeInTheDocument();
+    expect(getByText('Album 2')).toBeInTheDocument();
 })

@@ -1,15 +1,23 @@
 import React from 'react';
-import { GalleryService } from "../gallery-service/gallery.service";
+import { GalleryService, Video } from "../gallery-service/gallery.service";
 
 export default function Home(props: HomeProps) {
     const service = props.galleryService;
     const gallery = service.getGallery();
     const video = gallery.videos[0];
+    const albums = gallery.albums.map((album, index) => 
+        <div key={index}>
+            {album.name}
+        </div>
+    );
     return (
         <div>
-            <video id='main-video'>
-                <source src={video.src} type={video.type}></source>
-            </video>
+            {video &&
+                <video id='main-video'>
+                    <source src={video.src} type={video.type}></source>
+                </video>
+            }
+            {albums}
         </div>
     )
 }
