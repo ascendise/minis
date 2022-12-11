@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from "./home";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect'
 import { Gallery, GalleryService } from "../gallery-service/gallery.service";
 import { mock, when, verify, instance } from 'ts-mockito';
 
@@ -10,7 +11,7 @@ beforeEach(() => {
     mockGallery = mock(GalleryService);
 });
 
-it('should render video from gallery', () => {
+it('should render video from gallery', async () => {
     const gallery: Gallery = {
         videos: [
             {
@@ -21,17 +22,19 @@ it('should render video from gallery', () => {
         ],
         albums: [],
     }
-    when(mockGallery.getGallery()).thenReturn(gallery)
+    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery))
     const component = render(<Home galleryService={instance(mockGallery)}/>);
-    const video = component.container.querySelector("#main-video");
-    expect(video).toBeInTheDocument();
-    const sourceNode = video?.children[0];
-    expect(sourceNode?.getAttribute('src')).toBe('video.webm');
-    expect(sourceNode?.getAttribute('type')).toBe('video/webm');
-    verify(mockGallery.getGallery()).once();
+    await waitFor(() => {
+        const video = component.container.querySelector("#main-video");
+        expect(video).toBeInTheDocument();
+        const sourceNode = video?.children[0];
+        expect(sourceNode?.getAttribute('src')).toBe('video.webm');
+        expect(sourceNode?.getAttribute('type')).toBe('video/webm');
+    });
+    verify(mockGallery.getGallery()).called();
 })
 
-it('should render album title', () => {
+it('should render album title', async () => {
     const gallery: Gallery = {
         videos: [],
         albums: [
@@ -45,13 +48,16 @@ it('should render album title', () => {
             }
         ]
     }
-    when(mockGallery.getGallery()).thenReturn(gallery)
+    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery))
     const {getByText} = render(<Home galleryService={instance(mockGallery)}/>)
-    expect(getByText('Album 1')).toBeInTheDocument();
-    expect(getByText('Album 2')).toBeInTheDocument();
+    await waitFor(() => {
+        expect(getByText('Album 1')).toBeInTheDocument();
+        expect(getByText('Album 2')).toBeInTheDocument();
+    })
+    verify(mockGallery.getGallery()).called();
 })
 
-it('should render first image of album as preview', () => {
+it('should render first image of album as preview', async () => {
     const gallery: Gallery = {
         videos: [],
         albums: [
@@ -65,10 +71,13 @@ it('should render first image of album as preview', () => {
             }
         ]
     }
-    when(mockGallery.getGallery()).thenReturn(gallery)
+    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery))
     render(<Home galleryService={instance(mockGallery)}/>)
-    const image = screen.getByRole('img', {name: 'Image of something'});
-    expect(image).toBeInTheDocument();
-    expect(image.getAttribute('src')).toBe('./image.webp');
-    expect(image.getAttribute('alt')).toBe('Description of image');
+    await waitFor(() => {
+        const image = screen.getByRole('img', {name: 'Image of something'});
+        expect(image).toBeInTheDocument();
+        expect(image.getAttribute('src')).toBe('./image.webp');
+        expect(image.getAttribute('alt')).toBe('Description of image');
+    });
+    verify(mockGallery.getGallery()).called();
 })
