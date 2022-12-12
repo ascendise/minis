@@ -1,14 +1,19 @@
 import React from 'react';
 import Home from "./home";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect'
 import { Gallery, GalleryService } from "../gallery-service/gallery.service";
 import { mock, when, verify, instance } from 'ts-mockito';
+import { AlbumProps } from '../album/album';
 
 let mockGallery: GalleryService;
-
 beforeEach(() => {
     mockGallery = mock(GalleryService);
+});
+
+jest.mock('../album/Album', () => {
+    const mockAlbum = (props: AlbumProps) => <div data-testid={`album-${props.album.name}`}></div>
+    return mockAlbum;
 });
 
 it('should render video from gallery', async () => {
@@ -22,7 +27,7 @@ it('should render video from gallery', async () => {
         ],
         albums: [],
     }
-    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery))
+    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery));
     const component = render(<Home galleryService={instance(mockGallery)}/>);
     await waitFor(() => {
         const video = component.container.querySelector("#main-video");
@@ -34,50 +39,24 @@ it('should render video from gallery', async () => {
     verify(mockGallery.getGallery()).called();
 })
 
-it('should render album title', async () => {
+it('should render album from gallery', async () => {
     const gallery: Gallery = {
         videos: [],
         albums: [
             {
-                name: "Album 1",
-                images: [],
+                name: 'Album 1',
+                images: []
             },
             {
-                name: "Album 2",
-                images: [],
+                name: 'Album 2',
+                images: []
             }
         ]
     }
-    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery))
-    const {getByText} = render(<Home galleryService={instance(mockGallery)}/>)
+    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery));
+    const {getByTestId} = render(<Home galleryService={instance(mockGallery)}/>);
     await waitFor(() => {
-        expect(getByText('Album 1')).toBeInTheDocument();
-        expect(getByText('Album 2')).toBeInTheDocument();
+        expect(getByTestId('album-Album 1')).toBeInTheDocument();
+        expect(getByTestId('album-Album 2')).toBeInTheDocument();
     })
-    verify(mockGallery.getGallery()).called();
-})
-
-it('should render first image of album as preview', async () => {
-    const gallery: Gallery = {
-        videos: [],
-        albums: [
-            {
-                name: "Album 1",
-                images: [{
-                    name: 'Image of something',
-                    src: './image.webp',
-                    alt: 'Description of image'
-                }],
-            }
-        ]
-    }
-    when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery))
-    render(<Home galleryService={instance(mockGallery)}/>)
-    await waitFor(() => {
-        const image = screen.getByRole('img', {name: 'Image of something'});
-        expect(image).toBeInTheDocument();
-        expect(image.getAttribute('src')).toBe('./image.webp');
-        expect(image.getAttribute('alt')).toBe('Description of image');
-    });
-    verify(mockGallery.getGallery()).called();
-})
+});
