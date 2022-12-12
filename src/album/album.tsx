@@ -4,7 +4,7 @@ import { Album as AlbumData } from '../gallery-service/gallery.service'
 export default function Album(props: AlbumProps) {
     const album = props.album;
     return (
-        <div>
+        <div className="bg-slate-900 text-white rounded-sm font-bold text-2xl aspect-video grid place-items-center">
             {album.name}
             {album.images.length > 0 &&
                 <img 
