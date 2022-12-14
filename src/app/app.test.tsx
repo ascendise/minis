@@ -1,9 +1,9 @@
-import {  render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './app';
 import React from 'react';
 
 jest.mock('../home/Home', () => {
-  const mockHome = () => <div data-testid='home-page'></div>
+  const mockHome = () => <div data-testid="home-page"></div>;
   return mockHome;
 });
 
@@ -21,6 +21,6 @@ it('should render logo on home page', () => {
 });
 
 it('should render home page', () => {
-  const {getByTestId} = render(<App />);
+  const { getByTestId } = render(<App />);
   expect(getByTestId('home-page')).toBeInTheDocument();
-})
+});

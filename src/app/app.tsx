@@ -4,7 +4,7 @@ import Home from '../home/home';
 
 export default function App() {
   return (
-    <div className='flex flex-col h-screen bg-orange-200'>
+    <div className="flex flex-col h-screen bg-orange-200">
       <div className="text-center bg-orange-700 rounded-b-xl">
         <h1 className="text-white text-6xl font-bold inline">
           Minis!
