@@ -11,7 +11,7 @@ beforeEach(() => {
   mockGallery = mock(GalleryService);
 });
 
-jest.mock('../album/Album', () => {
+jest.mock('../album/album', () => {
   const mockAlbum = (props: AlbumProps) => <div data-testid={`album-${props.album.name}`}></div>;
   return mockAlbum;
 });

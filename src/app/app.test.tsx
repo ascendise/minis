@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import App from './app';
 import React from 'react';
 
-jest.mock('../home/Home', () => {
+jest.mock('../home/home', () => {
   const mockHome = () => <div data-testid="home-page"></div>;
   return mockHome;
 });
