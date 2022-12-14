@@ -1,8 +1,11 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './app';
 import React from 'react';
 
-afterEach(cleanup);
+jest.mock('../home/home', () => {
+  const mockHome = () => <div data-testid="home-page"></div>;
+  return mockHome;
+});
 
 it('should render website name', () => {
   render(<App />);
@@ -15,4 +18,9 @@ it('should render logo on home page', () => {
   const logo = screen.queryByRole('img');
   expect(logo).toBeInTheDocument();
   expect(logo?.getAttribute('src')).toBe('./logo.svg');
+});
+
+it('should render home page', () => {
+  const { getByTestId } = render(<App />);
+  expect(getByTestId('home-page')).toBeInTheDocument();
 });
