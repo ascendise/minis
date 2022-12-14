@@ -22,22 +22,11 @@ jobs:
       - run: npm ci
       - run: npm run build --omit dev
       - name: Deploy on FTP Server
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          server: ${{secrets.ftp_server}}
-          username: ${{secrets.ftp_username}}
-          password: ${{secrets.ftp_password}}
-          exclude: |
-            **/public/**
-            **/src/**
-            */
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .eslintignore
-            .eslintrc.json
-            .prettierignore
-            .prettierrc.json
-            package-lock.json
-            package.json
-            postcss.config.js
+          host: ${{ secrets.ftp_server }}
+          user: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          localDir: "build/."
+          remoteDir: "./"
+          options: "--delete --asci"
