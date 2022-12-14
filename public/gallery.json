@@ -1,0 +1,51 @@
+{
+    "videos": [
+        {
+            "name": "Video of some free shiz",
+            "src": "./assets/video.webm",
+            "type": "video/webm"
+        }
+    ],
+    "albums": [
+        {
+            "name": "Album 1",
+            "images": [
+                {
+                    "name": "Ellie and Joel",
+                    "src": "./assets/index.jpg",
+                    "alt": "Ellie and Joel"
+                }
+            ]
+        },
+        {
+            "name": "Album 2",
+            "images": [
+                {
+                    "name": "Ellie and Joel",
+                    "src": "./assets/index.jpg",
+                    "alt": "Ellie and Joel"
+                }
+            ]
+        },
+        {
+            "name": "Album 3",
+            "images": [
+                {
+                    "name": "Ellie and Joel",
+                    "src": "./assets/index.jpg",
+                    "alt": "Ellie and Joel"
+                }
+            ]
+        },
+        {
+            "name": "Album 4",
+            "images": [
+                {
+                    "name": "Ellie and Joel",
+                    "src": "./assets/index.jpg",
+                    "alt": "Ellie and Joel"
+                }
+            ]
+        }
+    ]
+}
