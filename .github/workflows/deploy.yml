@@ -27,3 +27,6 @@ jobs:
           server: ${{secrets.server}}
           username: ${{secrets.ftp-username}}
           password: ${{secrets.ftp-password}}
+          exclude: |
+            /*
+            !/build/**
