@@ -24,11 +24,11 @@ export default function Home(props: HomeProps) {
     return (
         <div>
             {video &&
-            <div className='flex justify-center my-5'>
+            <div className='flex justify-center my-5 max-h-[vh40]'>
                 <h3 className="text-white font-extrabold absolute z-50 left-2/5">
                     {video.name}
                 </h3>
-                <video className='aspect-video opacity-100 bg-black rounded-lg' id='main-video' controls loop>
+                <video className='aspect-video opacity-100 bg-black rounded-lg max-w-[100vh]' id='main-video' controls loop>
                     <source src={video.src} type={video.type}></source>
                 </video>
             </div>
