@@ -1,6 +1,19 @@
 import React from 'react';
 import { GalleryService } from '../gallery-service/gallery.service';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Home from '../home/home';
+import ImageGallery from '../image-gallery/image.gallery';
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <Home galleryService={new GalleryService()}/>
+  },
+  {
+    path: ":album-name",
+    element: <ImageGallery />
+  }
+])
 
 export default function App() {
   return (
@@ -11,7 +24,7 @@ export default function App() {
           <img className="inline h-10" src="./logo.svg" alt="paint brush with brown handle and purple paint"></img>
         </h1>
       </div>
-      <Home galleryService={new GalleryService()} />
+      <RouterProvider router={router}/>
     </div>
   );
 }

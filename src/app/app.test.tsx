@@ -7,6 +7,11 @@ jest.mock('../home/home', () => {
   return mockHome;
 });
 
+jest.mock('../image-gallery/image.gallery', () => {
+  const mockImageGallery = () => <div data-testid="image-gallery-page"></div>;
+  return mockImageGallery;
+})
+
 it('should render website name', () => {
   render(<App />);
   const title = screen.queryByText('Minis!');
