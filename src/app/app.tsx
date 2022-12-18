@@ -37,7 +37,7 @@ export default function App(props: AppProps) {
         </Link>
       </div>
       <Routes>
-        <Route path="/" element={<Home galleryService={props.galleryService}/>}/>
+        <Route path="/" element={<Home gallery={state.gallery}/>}/>
         {albumRoutes}
       </Routes>
     </div>

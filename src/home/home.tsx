@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Album from '../album/album';
-import { Gallery, GalleryService } from '../gallery-service/gallery.service';
+import { Gallery } from '../gallery-service/gallery.service';
 
 export default function Home(props: HomeProps) {
-  const [state, setState] = useState<HomeState>({
-    gallery: {
-      albums: [],
-      videos: [],
-    },
-  });
-  useEffect(() => {
-    props.galleryService.getGallery().then((res) => {
-      setState({
-        gallery: res,
-      });
-    });
-  }, []);
-  const gallery = state.gallery;
+  const gallery = props.gallery;
   const video = gallery.videos[0];
   const albums = gallery.albums.map((album, index) => 
   <Link key={index} to={`/${album.name.replace(' ', '-')}`}>
@@ -39,9 +26,5 @@ export default function Home(props: HomeProps) {
 }
 
 interface HomeProps {
-  galleryService: GalleryService;
-}
-
-interface HomeState {
-  gallery: Gallery;
+  gallery: Gallery
 }
