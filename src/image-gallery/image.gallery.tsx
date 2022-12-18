@@ -7,6 +7,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
     )
     return (
         <div>
+            <h2>{props.album.name}</h2>
             {images}
         </div>
     );

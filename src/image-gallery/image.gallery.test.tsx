@@ -35,3 +35,13 @@ it('should render all images inside album', async () => {
     expect(images[1].getAttribute('src')).toBe('./image2.jpg');
     expect(images[1].getAttribute('alt')).toBe('Image 2');
 })
+
+it('should render the album name', () => {
+    const album: Album = {
+        name: 'My super cool album name',
+        images: []
+    }
+    
+    const { queryByText } = render(<ImageGallery album={album} />);
+    expect(queryByText('My super cool album name')).toBeInTheDocument();
+})
