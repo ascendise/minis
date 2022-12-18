@@ -12,7 +12,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
     )
     return (
         <div>
-            <h2>{props.album.name}</h2>
+            <h2 className='text-orange-600 font-bold text-center text-size text-2xl'>{props.album.name}</h2>
                 <div className='flex flex-row flex-wrap justify-center gap-5'>
                     {images}
                 </div>
