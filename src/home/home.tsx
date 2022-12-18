@@ -6,10 +6,11 @@ import { Gallery } from '../gallery-service/gallery.service';
 export default function Home(props: HomeProps) {
   const gallery = props.gallery;
   const video = gallery.videos[0];
-  const albums = gallery.albums.map((album, index) => 
-  <Link key={index} to={`/${album.name.replace(' ', '-')}`}>
-    <Album key={index} album={album} />
-  </Link>);
+  const albums = gallery.albums.map((album, index) => (
+    <Link key={index} to={`/${album.name.replace(' ', '-')}`}>
+      <Album key={index} album={album} />
+    </Link>
+  ));
   return (
     <div>
       {video && (
@@ -26,5 +27,5 @@ export default function Home(props: HomeProps) {
 }
 
 interface HomeProps {
-  gallery: Gallery
+  gallery: Gallery;
 }

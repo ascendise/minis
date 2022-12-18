@@ -11,25 +11,21 @@ export default function App(props: AppProps) {
       videos: [],
     },
   });
-  const albumRoutes = state.gallery.albums.map((album, index) => 
-    <Route 
-      key={index}
-      path={`/${album.name.replace(' ', '-')}`} 
-      element={<ImageGallery album={album}/>}
-    />
-  );
+  const albumRoutes = state.gallery.albums.map((album, index) => (
+    <Route key={index} path={`/${album.name.replace(' ', '-')}`} element={<ImageGallery album={album} />} />
+  ));
   useEffect(() => {
-    props.galleryService.getGallery().then(res => {
+    props.galleryService.getGallery().then((res) => {
       setState({
         gallery: res,
       });
     });
   }, []);
-  
+
   return (
     <div className="flex flex-col h-screen bg-orange-200">
       <div className="text-center bg-orange-700 rounded-b-xl">
-        <Link to='/'>
+        <Link to="/">
           <h1 className="text-white text-6xl font-bold inline">
             Minis!
             <img className="inline h-10" src="./logo.svg" alt="paint brush with brown handle and purple paint"></img>
@@ -37,7 +33,7 @@ export default function App(props: AppProps) {
         </Link>
       </div>
       <Routes>
-        <Route path="/" element={<Home gallery={state.gallery}/>}/>
+        <Route path="/" element={<Home gallery={state.gallery} />} />
         {albumRoutes}
       </Routes>
     </div>
