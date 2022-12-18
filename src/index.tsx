@@ -4,12 +4,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './app/app';
 import { HashRouter } from 'react-router-dom';
+import { GalleryService } from './gallery-service/gallery.service';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <App></App>
+      <App galleryService={new GalleryService()}></App>
     </HashRouter>
   </React.StrictMode>
 );
