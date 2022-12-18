@@ -15,7 +15,7 @@ export default function App(props: AppProps) {
     <Route 
       key={index}
       path={`/${album.name.replace(' ', '-')}`} 
-      element={<ImageGallery />}
+      element={<ImageGallery album={album}/>}
     />
   );
   useEffect(() => {
