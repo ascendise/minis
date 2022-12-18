@@ -15,7 +15,7 @@ export default function Home(props: HomeProps) {
         gallery: res,
       });
     });
-  });
+  }, []);
   const gallery = state.gallery;
   const video = gallery.videos[0];
   const albums = gallery.albums.map((album, index) => <Album key={index} album={album} />);
