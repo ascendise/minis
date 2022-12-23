@@ -28,7 +28,12 @@ export default function App(props: AppProps) {
         <Link to="/">
           <h1 className="text-white text-6xl font-bold inline">
             Minis!
-            <img className="inline h-10" data-testid='logo' src="./logo.svg" alt="paint brush with brown handle and purple paint"></img>
+            <img
+              className="inline h-10"
+              data-testid="logo"
+              src="./logo.svg"
+              alt="paint brush with brown handle and purple paint"
+            ></img>
           </h1>
         </Link>
       </div>
