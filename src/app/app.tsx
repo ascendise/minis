@@ -28,7 +28,12 @@ export default function App(props: AppProps) {
         <Link to="/">
           <h1 className="text-white text-6xl font-bold inline">
             Minis!
-            <img className="inline h-10" src="./logo.svg" alt="paint brush with brown handle and purple paint"></img>
+            <img
+              className="inline h-10"
+              data-testid="logo"
+              src="./logo.svg"
+              alt="paint brush with brown handle and purple paint"
+            ></img>
           </h1>
         </Link>
       </div>
@@ -36,6 +41,14 @@ export default function App(props: AppProps) {
         <Route path="/" element={<Home gallery={state.gallery} />} />
         {albumRoutes}
       </Routes>
+      <div className="flex justify-center items-center gap-10 py-1 mt-auto bg-orange-700 rounded-t-xl">
+        <a href="https://github.com/ascendise/minis" target="blank">
+          <img className="max-h-[5vh]" src="github-mark-white.svg" />
+        </a>
+        <a href="https://github.com/ascendise/minis/blob/main/LICENSE" target="blank">
+          <span className="text-white font-bold">License</span>
+        </a>
+      </div>
     </div>
   );
 }

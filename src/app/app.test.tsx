@@ -38,13 +38,13 @@ it('should render website name', async () => {
 });
 
 it('should render logo on home page', async () => {
-  render(
+  const { findByTestId } = render(
     <MemoryRouter>
       <App galleryService={instance(mockGallery)} />
     </MemoryRouter>
   );
-  await waitFor(() => {
-    const logo = screen.queryByRole('img');
+  await waitFor(async () => {
+    const logo = await findByTestId('logo');
     expect(logo).toBeInTheDocument();
     expect(logo?.getAttribute('src')).toBe('./logo.svg');
   });
