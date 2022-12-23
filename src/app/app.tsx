@@ -12,7 +12,7 @@ export default function App(props: AppProps) {
     },
   });
   const albumRoutes = state.gallery.albums.map((album, index) => (
-    <Route key={index} path={`/${album.name.replace(' ', '-')}`} element={<ImageGallery album={album} />} />
+    <Route key={index} path={`/${album.name.replaceAll(' ', '-')}`} element={<ImageGallery album={album} />} />
   ));
   useEffect(() => {
     props.galleryService.getGallery().then((res) => {
