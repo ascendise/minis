@@ -3,7 +3,7 @@ import { Album } from '../gallery-service/gallery.service';
 
 export default function ImageGallery(props: ImageGalleryProps) {
   const images = props.album.images.map((img, index) => (
-    <img key={index} src={img.src} alt={img.alt} className="max-h-64" />
+    <img key={index} src={img.src} alt={img.alt} className="max-h-64 rounded-sm" />
   ));
   return (
     <div>
