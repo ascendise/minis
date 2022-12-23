@@ -36,6 +36,14 @@ export default function App(props: AppProps) {
         <Route path="/" element={<Home gallery={state.gallery} />} />
         {albumRoutes}
       </Routes>
+      <div className='flex justify-center items-center gap-10 py-1 my-5 bg-orange-700 rounded-t-xl'>
+        <a href='https://github.com/ascendise/minis' target='blank'>
+          <img className='max-h-[5vh]' src='github-mark-white.svg' />
+        </a>
+        <a href='https://github.com/ascendise/minis/blob/main/LICENSE' target='blank'>
+          <span className='text-white font-bold'>License</span>
+        </a>
+      </div>
     </div>
   );
 }
