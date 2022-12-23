@@ -6,7 +6,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
     <img key={index} src={img.src} alt={img.alt} className="max-h-64 rounded-sm" />
   ));
   return (
-    <div className='mx-5'>
+    <div className="mx-5">
       <h2 className="text-orange-600 font-bold text-center text-size text-2xl">{props.album.name}</h2>
       <div className="flex flex-row flex-wrap justify-center gap-5">{images}</div>
     </div>
