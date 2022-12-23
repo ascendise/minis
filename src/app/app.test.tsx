@@ -66,14 +66,14 @@ it('should render album on album page', async () => {
     videos: [],
     albums: [
       {
-        name: 'Album 1',
+        name: 'My Album 1',
         images: [],
       },
     ],
   };
   when(mockGallery.getGallery()).thenReturn(Promise.resolve(gallery));
   const { getByTestId } = render(
-    <MemoryRouter initialEntries={['/Album-1']}>
+    <MemoryRouter initialEntries={['/my-album-1']}>
       <App galleryService={instance(mockGallery)} />
     </MemoryRouter>
   );
