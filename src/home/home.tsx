@@ -21,7 +21,7 @@ export default function Home(props: HomeProps) {
           </video>
         </div>
       )}
-      <div className="grid grid-cols-4 gap-4 mx-5">{albums}</div>
+      <div className="grid grid-cols-4 gap-4 max-sm:grid-cols-1 max-md:grid-cols-2 mx-5">{albums}</div>
     </div>
   );
 }
