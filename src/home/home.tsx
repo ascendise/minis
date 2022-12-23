@@ -16,12 +16,17 @@ export default function Home(props: HomeProps) {
       {video && (
         <div className="flex justify-center my-5 max-h-[vh40]">
           <h3 className="text-white font-extrabold absolute z-50 left-2/5">{video.name}</h3>
-          <video className="aspect-video opacity-100 bg-black rounded-lg max-w-[100vh]" id="main-video" controls loop>
+          <video
+            className="aspect-video opacity-100 bg-black rounded-lg max-w-[90vw] max-h-[66vh] "
+            id="main-video"
+            controls
+            loop
+          >
             <source src={video.src} type={video.type}></source>
           </video>
         </div>
       )}
-      <div className="grid grid-cols-4 gap-4 mx-5">{albums}</div>
+      <div className="grid grid-cols-4 gap-4 max-sm:grid-cols-1 max-md:grid-cols-2 mx-5">{albums}</div>
     </div>
   );
 }
